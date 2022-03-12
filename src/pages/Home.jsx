@@ -1,12 +1,33 @@
 import React, { useState } from "react";
 import MainLayout from "../components/MainLayout";
+import { apiGet } from "../config/config";
+
+const renderResult = (results) => {
+  if (results && results.length === 0) {
+    return <div> No result found</div>;
+  }
+  if (results && results.length > 0) {
+    return (
+      <div>
+        {results.map((item) => (
+          <div key={item.results.id.id}>{item.results.id.title}</div>
+        ))}
+      </div>
+    );
+  }
+
+  return null;
+};
+
 export const Home = () => {
   const [input, setInput] = useState("");
+  const [results, setResults] = useState(null);
 
   const onSearch = () => {
-    fetch(`https://imdb-api.com/en/API/SearchAll/k_7ik12w4q/${input}`)
-      .then((res) => res.json())
-      .then((result) => console.log(result));
+    apiGet(`/SearchAll/k_7ik12w4q/${input}`).then((result) => {
+      setResults(result);
+      console.log(result);
+    });
   };
 
   const inputChange = (e) => {
@@ -20,6 +41,8 @@ export const Home = () => {
     }
   };
 
+  
+
   return (
     <MainLayout>
       <input
@@ -32,6 +55,8 @@ export const Home = () => {
         {" "}
         Search
       </button>
+
+      {renderResult(results)}
     </MainLayout>
   );
 };

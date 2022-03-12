@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import {Outlet, Link } from "react-router-dom";
 
 const LINKS = [
   { id: "1" ,to: "/", text: "Home" },
@@ -16,6 +16,7 @@ const NavBar = () => {
           </li>
         ))}
       </ul>
+      <Outlet />
     </>
   );
 };
