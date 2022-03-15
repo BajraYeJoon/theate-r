@@ -2,9 +2,10 @@ import React from "react";
 import ShowCard from "./ShowCard";
 
 import IMAGE from "../../images/not-found.png";
+import { FlexGrid } from "../styled";
 const ShowLogic = ({ data }) => {
   return (
-    <div>
+    <FlexGrid>
       {data.map(({ show }) => (
         <ShowCard
           key={show.id}
@@ -14,7 +15,7 @@ const ShowLogic = ({ data }) => {
           summary={show.summary}
         />
       ))}
-    </div>
+    </FlexGrid>
   );
 };
 
