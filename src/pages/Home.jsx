@@ -2,31 +2,16 @@ import React, { useState } from "react";
 import MainLayout from "../components/MainLayout";
 import { apiGet } from "../config/config";
 
-const renderResult = (results) => {
-  if (results && results.length === 0) {
-    return <div> No result found</div>;
-  }
-  if (results && results.length > 0) {
-    return (
-      <div>
-        {results.map((item) => (
-          <div key={item.results.id.id}>{item.results.id.title}</div>
-        ))}
-      </div>
-    );
-  }
 
-  return null;
-};
 
 export const Home = () => {
   const [input, setInput] = useState("");
-  const [results, setResults] = useState(null);
+  const [res, setResults] = useState(null);
 
   const onSearch = () => {
-    apiGet(`/SearchAll/k_7ik12w4q/${input}`).then((result) => {
+    apiGet(`/search/shows?q=${input}`).then(result => {
       setResults(result);
-      console.log(result);
+      console.log(result)
     });
   };
 
@@ -39,6 +24,23 @@ export const Home = () => {
     if (event.code === "Enter") {
       onSearch();
     }
+  };
+
+  const renderResult = () => {
+    if (res && res.length === 0) {
+      return <div> No result found</div>;
+    }
+
+    if (res && res.length > 0) {
+      return (
+        <div>
+          {res.map((item) => (
+            <div key={item.show.id}>{item.show.name}</div>
+          ))}
+        </div>
+      );
+    }
+    return null;
   };
 
   
@@ -56,7 +58,7 @@ export const Home = () => {
         Search
       </button>
 
-      {renderResult(results)}
+      {renderResult()}
     </MainLayout>
   );
 };

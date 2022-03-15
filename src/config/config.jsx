@@ -1,8 +1,8 @@
-const BASE_API_URL = "https://imdb-api.com/en/API";
+const BASE_API_URL = "https://api.tvmaze.com";
 
 export async function apiGet(query) {
-  const response = await fetch(`${BASE_API_URL}${query}`).then((res) =>
-    res.json()
+  const response = await fetch(`${BASE_API_URL}${query}`).then((r) =>
+    r.json()
   );
   return response;
 }
