@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import ActorLogic from "../components/actor/ActorLogic";
 import MainLayout from "../components/MainLayout";
+import ShowLogic from "../components/shows/ShowLogic";
 import { apiGet } from "../config/config";
 
 export const Home = () => {
@@ -39,9 +41,11 @@ export const Home = () => {
     }
 
     if (res && res.length > 0) {
+
+    
       return res[0].show
-        ? res.map((item) => <div key={item.show.id}>{item.show.name}</div>)
-        : res.map((item) => <div key={item.person.id}>{item.person.name}</div>);
+        ? <ShowLogic data={res}/>
+        : <ActorLogic data={res}/>;
     }
     return null;
   };
