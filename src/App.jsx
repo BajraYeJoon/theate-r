@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Favorite from "./pages/Favorite";
 import {Home} from "./pages/Home";
 import { NoMatch } from "./pages/NoMatch";
+import { ShowDesc } from "./pages/ShowDesc";
 
 export default function App() {
   return (
@@ -11,10 +12,12 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home />} />
       
-      <Route path="favorite" element={<Favorite />}/>
+      <Route exact path="favorite" element={<Favorite />}/>
     
 
       <Route path="*" element={<NoMatch />}/>
+
+      <Route exact path="show/:id" element={<ShowDesc />}/>
      </Routes>
     </>
   );
