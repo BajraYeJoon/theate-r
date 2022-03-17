@@ -1,6 +1,10 @@
 /* eslint-disable no-unused-expressions */
 import React, { useEffect, useReducer } from "react";
 import { useParams } from "react-router";
+import Cast from "../components/shows/Cast";
+import Details from "../components/shows/Details";
+import MainShowData from "../components/shows/MainShowData";
+import Seasons from "../components/shows/Seasons";
 import { apiGet } from "../config/config";
 
 const initialState = {
@@ -26,7 +30,7 @@ export const ShowDesc = () => {
     initialState
   );
 
-  console.log(isLoading, isError, show)
+  console.log(isLoading, isError, show);
 
   //   const [showDesc, setShowDesc] = useState(null);
   //   const [isLoading, setIsLoading] = useState(true);
@@ -69,5 +73,32 @@ export const ShowDesc = () => {
   //     return <div> error : {isError}</div>;
   //   }
 
-  return <div>this is show page</div>;
+  return (
+    <div>
+      <MainShowData
+        image={show.image}
+        name={show.name}
+        rating={show.rating}
+        summary={show.summary}
+        tags={show.genres}
+      />
+      
+      <div>
+        <h2>Details</h2>
+        <Details
+          status={show.status}
+          network={show.network}
+          premiered={show.premiered}
+        />
+      </div>
+      <div>
+        <h2>Seasons</h2>
+        <Seasons seasons={show._embedded.seasons}/>
+      </div>
+      <div>
+        <h2>Cast</h2>
+        <Cast cast={show._embedded.cast}/>
+      </div>
+    </div>
+  );
 };
