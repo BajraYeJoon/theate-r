@@ -4,7 +4,7 @@ import MainLayout from "../components/MainLayout";
 import ShowLogic from "../components/shows/ShowLogic";
 import { apiGet } from "../config/config";
 
-export const Home = () => {
+const Home = () => {
   const [input, setInput] = useState("");
   const [res, setResults] = useState(null);
   const [optionValue, setOptionValue] = useState("shows");
