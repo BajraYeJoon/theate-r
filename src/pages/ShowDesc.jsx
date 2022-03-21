@@ -24,7 +24,7 @@ const reducer = (state, action) => {
   }
 };
 
-export const ShowDesc = () => {
+const ShowDesc = () => {
   const [{ isLoading, isError, show }, dispatch] = useReducer(
     reducer,
     initialState
@@ -63,7 +63,7 @@ export const ShowDesc = () => {
     };
   }, [id]);
 
-  //   console.log(showDesc);
+  console.log(id);
 
   //   if (isLoading) {
   //     return <div>Data is being loaded</div>;
@@ -102,3 +102,6 @@ export const ShowDesc = () => {
     </div>
   );
 };
+
+
+export default ShowDesc;
