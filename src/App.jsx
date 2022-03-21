@@ -2,11 +2,11 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 
 import Favorite from "./pages/Favorite";
-import {Home} from "./pages/Home";
+import Home from "./pages/Home";
 import { NoMatch } from "./pages/NoMatch";
-import { ShowDesc } from "./pages/ShowDesc";
+import ShowDesc from "./pages/ShowDesc";
 
-export default function App() {
+function App() {
   return (
     <>
     <Routes>
@@ -22,5 +22,7 @@ export default function App() {
     </>
   );
 }
+
+export default App;
 
 
